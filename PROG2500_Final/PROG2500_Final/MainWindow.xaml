@@ -5,8 +5,66 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PROG2500_Final"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="Final Project" Height="450" Width="800" Background="#0D99FF">
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="imdb" UriSource="/Images/imdb.png"></BitmapImage>
+            <BitmapImage x:Key="home" UriSource="/Images/home.png"></BitmapImage>
+            <BitmapImage x:Key="director" UriSource="/Images/director.png"></BitmapImage>
+            <BitmapImage x:Key="movie" UriSource="/Images/movie.png"></BitmapImage>
+            <BitmapImage x:Key="series" UriSource="/Images/series.png"></BitmapImage>
+            <Style x:Key="Toolbar" TargetType="ToolBar">
+                <Setter Property="Background" Value="#0D99FF"></Setter>
+            </Style>
+            <Style x:Key="Button" TargetType="Button">
+                <Setter Property="Background" Value="#0D99FF"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" Foreground="Black">
+            <MenuItem Header="_File" Click="ExitButton_Click">
+                <MenuItem Header="_Exit"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Pages">
+                <MenuItem Header="_Home" Click="HomeButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource home}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_View Movies" Click="MoviesButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource movie}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_View Series" Click="SeriesButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource series}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_View Directors" Click="DirectorsButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource director}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Left" Style="{StaticResource Toolbar}" ToolBarTray.IsLocked="True">
+            <StackPanel Orientation="Vertical" Width="50">
+                <Button x:Name="HomeButton" Click="HomeButton_Click" ToolTip="Home" Style="{StaticResource Button}">
+                    <Image Source="{StaticResource home}"/>
+                </Button>
+                <Button x:Name="ViewArtistsButton" Click="MoviesButton_Click" ToolTip="View Artists" Style="{StaticResource Button}">
+                    <Image Source="{StaticResource movie}"/>
+                </Button>
+                <Button x:Name="ViewAlbumsButton" Click="SeriesButton_Click" ToolTip="View Albums" Style="{StaticResource Button}">
+                    <Image Source="{StaticResource series}"/>
+                </Button>
+                <Button x:Name="ViewTracksButton" Click="DirectorsButton_Click" ToolTip="View Tracks" Style="{StaticResource Button}">
+                    <Image Source="{StaticResource director}"/>
+                </Button>
+            </StackPanel>
+        </ToolBar>
+        <Frame x:Name="mainFrame" Height="Auto" Width="Auto" NavigationUIVisibility="Hidden"></Frame>
+    </DockPanel>
 </Window>
