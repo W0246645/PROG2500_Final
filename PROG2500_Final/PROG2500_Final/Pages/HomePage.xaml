@@ -7,8 +7,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="imdb" UriSource="/Images/imdb.png"></BitmapImage>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
-        
+        <Image Source="{StaticResource imdb}"/>
     </Grid>
 </Page>
