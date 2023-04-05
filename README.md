@@ -66,13 +66,21 @@ practices, LINQ, etc..
 Project Deliverables
 
  Project Proposal (5% of Final Mark):
+
 o Project description
+
 o Wireframe of application
+
 o Basic workplan, including timeline and member assignments
+
  Team Collaboration and Progress Journal (5% of Final Mark)
+
 o Work Progress Logs (Kept by individual students, combined for submission)
+
 o Team Resources/Links documentation
+
 o Project commentary/documentation
+
  Application Evaluation & In-Class Demonstration (15% of Final Mark)
+
  Peer & Self Evaluations (5% of Final Mark)
-Please review the four rubrics below for evaluation expectations for each deliverable.
