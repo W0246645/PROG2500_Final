@@ -28,7 +28,7 @@ namespace PROG2500_Final.Pages
         public DirectorsPage()
         {
             InitializeComponent();
-            _context.Names.Load(); // this line is the problem
+            //_context.Names.Load(); // this line is the problem, to test it, uncomment it
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
