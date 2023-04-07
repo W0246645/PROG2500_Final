@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PROG2500_Final.Data;
+using PROG2500_Final.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,43 @@ namespace PROG2500_Final.Pages
     /// </summary>
     public partial class SeriesPage : Page
     {
-        public SeriesPage()
+        private readonly ImdbProjectContext _context;
+        public SeriesPage(ImdbProjectContext context)
         {
+            _context = context;
             InitializeComponent();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var search = _context.Episodes.GroupBy(e => e.ParentTitle).Select(g => g.First()).ToList().Where(t => t.ParentTitle.PrimaryTitle.ToLower().Contains(seriesSearch.Text.ToLower())).AsEnumerable()
+                .Select(s => new
+                {
+                    Series = s.ParentTitle.PrimaryTitle,
+                    SeriesRating = s.ParentTitle.Rating != null ? s.ParentTitle.Rating.AvgFormatted : "No rating",
+                    Episodes = s.ParentTitle.EpisodeParentTitles.ToList()
+                }).ToList();
+
+            seriesListView.ItemsSource = search;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            _context.Titles.Load();
+            _context.Episodes.Load();
+            _context.Ratings.Load();
+
+            var series = _context.Episodes.GroupBy(e => e.ParentTitle)
+                .Select(g => g.First())
+                .AsEnumerable()
+                .Select(s => new
+                {
+                    Series = s.ParentTitle.PrimaryTitle,
+                    SeriesRating = s.ParentTitle.Rating != null ? s.ParentTitle.Rating.AvgFormatted : "No rating",
+                    Episodes = s.ParentTitle.EpisodeParentTitles.ToList()
+                }).ToList();
+
+            seriesListView.ItemsSource = series;
         }
     }
 }

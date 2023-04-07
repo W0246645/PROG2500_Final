@@ -54,13 +54,13 @@
                 <Button x:Name="HomeButton" Click="HomeButton_Click" ToolTip="Home" Style="{StaticResource Button}">
                     <Image Source="{StaticResource home}"/>
                 </Button>
-                <Button x:Name="ViewArtistsButton" Click="MoviesButton_Click" ToolTip="View Artists" Style="{StaticResource Button}">
+                <Button Click="MoviesButton_Click" ToolTip="View Movies" Style="{StaticResource Button}">
                     <Image Source="{StaticResource movie}"/>
                 </Button>
-                <Button x:Name="ViewAlbumsButton" Click="SeriesButton_Click" ToolTip="View Albums" Style="{StaticResource Button}">
+                <Button Click="SeriesButton_Click" ToolTip="View Series" Style="{StaticResource Button}">
                     <Image Source="{StaticResource series}"/>
                 </Button>
-                <Button x:Name="ViewTracksButton" Click="DirectorsButton_Click" ToolTip="View Tracks" Style="{StaticResource Button}">
+                <Button Click="DirectorsButton_Click" ToolTip="View Directors" Style="{StaticResource Button}">
                     <Image Source="{StaticResource director}"/>
                 </Button>
             </StackPanel>
