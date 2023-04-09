@@ -31,7 +31,7 @@ namespace PROG2500_Final
             InitializeComponent();
             HomePage = new Pages.HomePage();
             MoviesPage = new Pages.MoviesPage();
-            SeriesPage = new Pages.SeriesPage();
+            SeriesPage = new Pages.SeriesPage(_context);
             DirectorsPage = new Pages.DirectorsPage();
 
             mainFrame.NavigationService.Navigate(HomePage);

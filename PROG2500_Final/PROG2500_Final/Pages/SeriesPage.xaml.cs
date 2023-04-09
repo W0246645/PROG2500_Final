@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using PROG2500_Final.Data;
+using PROG2500_Final.Models;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +24,57 @@ namespace PROG2500_Final.Pages
     /// </summary>
     public partial class SeriesPage : Page
     {
-        public SeriesPage()
+        private readonly ImdbProjectContext _context;
+        public SeriesPage(ImdbProjectContext context)
         {
+            _context = context;
             InitializeComponent();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var search = _context.Episodes
+                .Include(e => e.ParentTitle)
+                    .ThenInclude(t => t.Rating)
+                .Include(e => e.ParentTitle.EpisodeParentTitles)
+                    .ThenInclude(e => e.Title)
+                .Where(e => e.ParentTitle.PrimaryTitle.ToLower().Contains(seriesSearch.Text.ToLower()))
+                .OrderBy(e => e.ParentTitle.PrimaryTitle)
+                .ThenBy(e => e.SeasonNumber)
+                .ThenBy(e => e.EpisodeNumber)
+                .GroupBy(e => e.ParentTitle)
+                .Select(g => new
+                {
+                    Series = g.Key.PrimaryTitle,
+                    SeriesRating = g.Key.Rating != null ? g.Key.Rating.AvgFormatted : "No rating",
+                    Episodes = g.ToList()
+                })
+                .ToList();
+
+            seriesListView.ItemsSource = search;
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var series = _context.Episodes
+                .Include(e => e.Title)
+                .Include(e => e.ParentTitle)
+                    .ThenInclude(t => t.Rating)
+                .Include(e => e.ParentTitle.EpisodeParentTitles)
+                    .ThenInclude(e => e.Title)
+                .OrderBy(e => e.ParentTitle.PrimaryTitle)
+                .ThenBy(e => e.SeasonNumber)
+                .ThenBy(e => e.EpisodeNumber)
+                .Take(1000)
+                .GroupBy(e => e.ParentTitle)
+                .Select(g => new
+                {
+                    Series = g.Key.PrimaryTitle,
+                    SeriesRating = g.Key.Rating != null ? g.Key.Rating.AvgFormatted : "No rating",
+                    Episodes = g.ToList()
+                }).ToList();
+
+            seriesListView.ItemsSource = series;
         }
     }
 }
