@@ -28,7 +28,7 @@ namespace PROG2500_Final.Pages
         public DirectorsPage()
         {
             InitializeComponent();
-            //_context.Names.Load(); // this line is the problem, to test it, uncomment it
+            _context.Names.Take(2000).Load();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -36,7 +36,7 @@ namespace PROG2500_Final.Pages
             string searchTerm = directorSearch.Text;
 
             var query =
-                from Name in _context.Names
+                from Name in _context.Names.Take(2000)
                 where Name.PrimaryName.Contains(searchTerm)
                 select Name;
 
@@ -46,9 +46,17 @@ namespace PROG2500_Final.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            var directors = _context.Names.ToList();
+
+            var query =
+                (from Name in _context.Names
+                 select Name)
+                .Take(2000)
+                .ToList();
+
             var directorViewSource = (CollectionViewSource)FindResource("directorViewSource");
-            directorViewSource.Source = new ObservableCollection<Name>(directors);
+            directorViewSource.Source = new ObservableCollection<Name>(query);
+
+
         }
     }
 }

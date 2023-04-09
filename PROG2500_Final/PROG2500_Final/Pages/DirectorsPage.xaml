@@ -33,24 +33,33 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Text=" ID" Grid.Row="0" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-            <TextBlock Text="       Director Name" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <ListView Grid.Row="1" Grid.ColumnSpan="2" Height="417" ItemsSource="{Binding Source={StaticResource directorViewSource}}">
+            <TextBlock Text="Name" Grid.Row="0" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+            <TextBlock Text="Profession" Grid.Row="0" Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="Birth Year" Grid.Row="0" Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock Text="Death Year" Grid.Row="0" Grid.Column="3" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <ListView Grid.Row="1" Grid.ColumnSpan="4" Height="417" ItemsSource="{Binding Source={StaticResource directorViewSource}}">
                 <ListView.ItemTemplate>
-                    <DataTemplate DataType="local:Artist">
+                    <DataTemplate DataType="local:Director">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="{Binding nameID}" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding primaryName}" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding PrimaryName}" Grid.Column="0" Margin="0 0 10 0" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding PrimaryProfession}" Grid.Column="1" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding BirthYear}" Grid.Column="2" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding DeathYear}" Grid.Column="3" Margin="0 0 10 0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
+
     </StackPanel>
 </Page>
