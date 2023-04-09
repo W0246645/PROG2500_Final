@@ -6,9 +6,44 @@
       xmlns:local="clr-namespace:PROG2500_Final.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SeriesPage">
+      Title="SeriesPage" Loaded="Page_Loaded">
+    <Page.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="CornflowerBlue" />
+            <GradientStop Offset="1" Color="#FFFFFF" />
+        </LinearGradientBrush>
+    </Page.Background>
+    <Page.Resources>
+        <CollectionViewSource x:Key="seriesViewSource"></CollectionViewSource>
+    </Page.Resources>
 
-    <Grid>
-        
-    </Grid>
+    <StackPanel>
+        <TextBlock Text="Series Page" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 0 0 10"></TextBlock>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="Search for Series:"></Label>
+            <TextBox x:Name="seriesSearch" Width="300" FontSize="15"></TextBox>
+            <Button x:Name="btnSearch" Content="Search"  Click="btnSearch_Click" Background="CornflowerBlue"></Button>
+        </StackPanel>
+        <ListView x:Name="seriesListView" Height="300">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="{Binding Series}"/>
+                        <TextBlock Text="{Binding SeriesRating}"/>
+                        <Expander Header="View Episode(s)">
+                            <ListView ItemsSource="{Binding Episodes}" Height="200" Width="650">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding Title.PrimaryTitle}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </Expander>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
 </Page>
