@@ -46,17 +46,15 @@ namespace PROG2500_Final.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
-            var query =
-                (from Name in _context.Names
-                 select Name)
-                .Take(2000)
-                .ToList();
+            var query = (from name in _context.Names
+                         where name.PrimaryProfession.Contains("director")
+                         select name)
+                        .Take(2000)
+                        .ToList();
 
             var directorViewSource = (CollectionViewSource)FindResource("directorViewSource");
             directorViewSource.Source = new ObservableCollection<Name>(query);
-
-
         }
+
     }
 }
