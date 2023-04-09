@@ -37,7 +37,7 @@ namespace PROG2500_Final.Pages
 
             var query =
                 from Name in _context.Names.Take(2000)
-                where Name.PrimaryName.Contains(searchTerm)
+                where Name.PrimaryName.Contains(searchTerm) && Name.PrimaryProfession.Contains("director")
                 select Name;
 
             var directorViewSource = (CollectionViewSource)FindResource("directorViewSource");
@@ -56,5 +56,9 @@ namespace PROG2500_Final.Pages
             directorViewSource.Source = new ObservableCollection<Name>(query);
         }
 
+        private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
