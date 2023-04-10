@@ -32,7 +32,7 @@ namespace PROG2500_Final.Pages
         {
             Movies.Clear();
 
-            var titles = _context.Titles.Take(500).ToList();
+            var titles = _context.Titles.ToList();
             if (!string.IsNullOrEmpty(searchTitle))
             {
                 titles = titles.Where(t => t.PrimaryTitle.Contains(searchTitle)).ToList();
@@ -56,7 +56,7 @@ namespace PROG2500_Final.Pages
                 var principal = _context.Principals.FirstOrDefault(p => p.TitleId == title.TitleId && p.JobCategory == "director");
                 if (principal != null)
                 {
-                    var name = _context.Names.FirstOrDefault(n => n.NameId == principal.NameId);
+                    var name = _context.Names.FirstOrDefault(n => n.NameId == principal.NameId && principal.JobCategory == "director");
                     if (name != null)
                     {
                         movieData.Director = name.PrimaryName;
