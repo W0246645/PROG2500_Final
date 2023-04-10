@@ -28,7 +28,6 @@ namespace PROG2500_Final.Pages
         public DirectorsPage()
         {
             InitializeComponent();
-            _context.Names.Take(2000).Load();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -36,7 +35,7 @@ namespace PROG2500_Final.Pages
             string searchTerm = directorSearch.Text;
 
             var query =
-                from Name in _context.Names.Take(2000)
+                from Name in _context.Names
                 where Name.PrimaryName.Contains(searchTerm) && Name.PrimaryProfession.Contains("director")
                 select Name;
 
@@ -49,7 +48,6 @@ namespace PROG2500_Final.Pages
             var query = (from name in _context.Names
                          where name.PrimaryProfession.Contains("director")
                          select name)
-                        .Take(2000)
                         .ToList();
 
             var directorViewSource = (CollectionViewSource)FindResource("directorViewSource");
