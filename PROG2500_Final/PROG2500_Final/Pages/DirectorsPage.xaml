@@ -39,7 +39,7 @@
             <TextBlock Text="Profession" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <TextBlock Text="Birth date" Grid.Row="0" Grid.Column="2" Margin="-200 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBlock Text="Death Date" Grid.Row="0" Grid.Column="3" Margin="190 0 0 0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ListView Grid.Row="1" Grid.ColumnSpan="2" Height="417" ItemsSource="{Binding Source={StaticResource directorViewSource}}">
+            <ListView Grid.Row="1" Grid.ColumnSpan="2" Height="275" ItemsSource="{Binding Source={StaticResource directorViewSource}}">
                 <ListView.ItemTemplate>
                     <DataTemplate DataType="local:Director">
                         <Grid>

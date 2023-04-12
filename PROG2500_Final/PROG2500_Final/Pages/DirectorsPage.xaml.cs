@@ -48,6 +48,7 @@ namespace PROG2500_Final.Pages
             var query = (from name in _context.Names
                          where name.PrimaryProfession.Contains("director")
                          select name)
+                         .Take(1000)
                         .ToList();
 
             var directorViewSource = (CollectionViewSource)FindResource("directorViewSource");
